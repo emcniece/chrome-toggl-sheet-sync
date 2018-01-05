@@ -19,6 +19,12 @@ if (fileSystem.existsSync(secretsPath)) {
 }
 
 var options = {
+  node: {
+    child_process: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  },
   entry: {
     popup: path.join(__dirname, "src", "js", "popup.js"),
     options: path.join(__dirname, "src", "js", "options.js"),
@@ -34,6 +40,26 @@ var options = {
         test: /\.css$/,
         loader: "style-loader!css-loader",
         exclude: /node_modules/
+      },
+      {
+        test: /\.(scss)$/,
+        use: [{
+          loader: 'style-loader', // inject CSS to page
+        }, {
+          loader: 'css-loader', // translates CSS into CommonJS modules
+        }, {
+          loader: 'postcss-loader', // Run post css actions
+          options: {
+            plugins: function () { // post css plugins, can be exported to postcss.config.js
+              return [
+                require('precss'),
+                require('autoprefixer')
+              ];
+            }
+          }
+        }, {
+          loader: 'sass-loader' // compiles SASS to CSS
+        }]
       },
       {
         test: new RegExp('\.(' + fileExtensions.join('|') + ')$'),
@@ -83,7 +109,16 @@ var options = {
       filename: "background.html",
       chunks: ["background"]
     }),
-    new WriteFilePlugin()
+    new WriteFilePlugin(),
+    new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+        Popper: ['popper.js', 'default'],
+        // In case you imported plugins individually, you must also require them here:
+        Util: "exports-loader?Util!bootstrap/js/dist/util",
+        Dropdown: "exports-loader?Dropdown!bootstrap/js/dist/dropdown",
+      })
   ]
 };
 

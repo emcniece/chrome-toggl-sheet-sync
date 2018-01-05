@@ -2,8 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Toggl GSheet Sync</title>
 </head>
 <body>
+
+<div class="container" id="nav">
+  <div class="row">
+    <div class="col-12">
+      <h1>Toggl GSheet Sync</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" id="btn-options" class="btn btn-info">Options</button>
+        <button type="button" id="btn-test" class="btn btn-secondary">Test</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="test">
+  <div class="row">
+    <div class="col-12">
+      <h3>Test</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <form class="form-inline">
+        <button id="toggl-prevDay" type="button" class="btn btn-secondary mb-2">&lt;</button>
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="current-day" class="sr-only">Current Day</label>
+          <input type="text" class="form-control" id="current-day">
+        </div>
+        <button id="toggl-nextDay" type="button" class="btn btn-secondary mb-2">&gt;</button>
+        <button id="toggl-get" type="button" class="btn btn-info mb-2">Toggl: get day</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button id="sheet-put" type="button" class="btn btn-warning">Sheet: put row</button>
+
+      <button id="sheet-put-bump" type="button" class="btn btn-warning">Sheet: put &amp; increment</button>
+    </div>
+  </div>
+
+</div><!-- #test -->
+
+<div class="container" id="options">
+  <div class="row">
+    <div class="col-12">
+      <h3>Options</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <form id="settings">
+        <div class="form-group">
+          <label for="googleJsonCreds">Google JSON Credentials</label>
+          <textarea class="form-control data-storage" data-type="json" id="googleJsonCreds" rows="3"></textarea>
+        </div>
+
+        <div class="form-group form-row">
+          <div class="col">
+            <label for="gsheetId">Google Sheet ID</label>
+            <input class="form-control data-storage" id="gsheetId" aria-describedby="gsheetHelp" placeholder="...">
+            <small id="gsheetHelp" class="form-text text-muted">ID of sheet, found in URL</small>
+          </div>
+
+          <div class="col">
+            <label for="worksheetNum">Worksheet Name</label>
+            <input class="form-control data-storage" id="worksheetName" aria-describedby="worksheetName">
+            <small id="worksheetHelp" class="form-text text-muted">Name of page inside sheet</small>
+          </div>
+        </div>
+
+        <div class="form-group form-row">
+          <div class="col">
+            <label for="togglApiKey">Toggl API key</label>
+            <input class="form-control data-storage" id="togglApiKey" placeholder="...">
+          </div>
+
+          <div class="col">
+            <label for="togglWsId">Toggl Workspace ID</label>
+            <input class="form-control data-storage" id="togglWsId" aria-describedby="togglWsIdHelp" placeholder="12345">
+            <small id="togglWsIdHelp" class="form-text text-muted">Workspace ID</small>
+          </div>
+        </div>
+
+        <div class="form-group form-row">
+          <div class="col">
+            <label for="togglUserAgent">Toggl UserAgent</label>
+            <input class="form-control data-storage" id="togglUserAgent" placeholder="...">
+            <small id="togglUserAgentHelp" class="form-text text-muted">Required for API calls - email address is accepted</small>
+          </div>
+        </div>
+
+        <div class="form-group form-row">
+          <div class="col">
+            <label for="notes">Notes</label>
+            <textarea class="form-control data-storage" id="notes" rows="3"></textarea>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col" id="alerts"></div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button id="save-options" type="button" class="btn btn-primary">Save</button>
+      <button id="test-google" type="button" class="btn btn-info">Test Google API</button>
+      <button id="test-toggl" type="button" class="btn btn-info">Test Toggl API</button>
+    </div>
+  </div>
+      
+
+</div><!-- .container -->
+
 </body>
 </html>
