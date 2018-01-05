@@ -1,0 +1,23 @@
+.container{
+  width:300px;
+  padding-top:15px;
+  padding-bottom: 15px;
+  font-size:0.7rem;
+}
+.day-input{
+  margin:0 5px;
+}
+#current-day{
+  text-align:center;
+}
+.btn-sm, .btn-group-sm > .btn{
+  font-size:0.4rem;
+}
+.entry{
+  margin-bottom: 5px;
+  padding:0 15px 5px 15px;
+  border-bottom: 1px solid #eee;
+}
+.no-entries{
+  text-align: center;
+}

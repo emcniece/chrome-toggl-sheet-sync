@@ -1,18 +1,9 @@
-//var Rx = require('rxjs/Rx');
-//var time = require('time');
-//var _ = require('underscore');
-//var rest = require('restler');
-//var hash = require('object-hash');
-//var dateFormat = require('dateformat');
-
 import 'bootstrap';
-
 import "../sass/general.scss";
 import { Storage } from './storage';
 import { Toggl } from './toggl';
 import { Sheets } from './sheets';
 import { Formatter } from './formatter';
-
 
 export class Options {
   constructor(){
@@ -62,11 +53,6 @@ export class Options {
     })
   }
 
-  togglParse(){
-    const value = document.getElementById('current-day').value;
-    const result = this.toggl.setDay(value);
-  }
-
   togglPrev(){
     this.toggl.prevDay();
     document.getElementById('current-day').value = this.toggl.targetDay.toISODate();
@@ -75,6 +61,11 @@ export class Options {
   togglNext(){
     this.toggl.nextDay();
     document.getElementById('current-day').value = this.toggl.targetDay.toISODate();
+  }
+
+  togglParse(){
+    const value = document.getElementById('current-day').value;
+    const result = this.toggl.setDay(value);
   }
 
   togglGet(){

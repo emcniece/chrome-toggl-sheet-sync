@@ -2,12 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Toggl GSheet Sync</title>
 </head>
 <body>
-  <h1>Hello!</h1>
-  <img src="img/icon-128.png">
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>Toggl Sheet Sync</h3>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col">
+      <form class="form-inline">
+        <button id="toggl-prevDay" type="button" class="btn btn-sm btn-secondary mb-2">&lt;</button>
+        <div class="form-group mx-sm-3 mb-2 day-input">
+          <label for="current-day" class="sr-only">Current Day</label>
+          <input type="text" class="form-control" id="current-day">
+        </div>
+        <button id="toggl-nextDay" type="button" class="btn btn-sm btn-secondary mb-2">&gt;</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div id="entries"></div>
+    </div>
+  </div>  
+
+  <div class="row justify-content-between">
+    <div class="col-5">
+      <button id="open-options" type="button" class="btn btn-sm btn-secondary" title="Options">
+        <span class="oi oi-cog" title="cog" aria-hidden="true"></span>
+      </button>
+
+      <a href="#" id="link-toggl" class="btn btn-primary btn-sm btn-danger" role="button" target="_blank">
+        <span class="oi oi-timer" title="timer" aria-hidden="true"></span>
+      </a>
+
+      <a href="#" id="link-sheet" class="btn btn-primary btn-sm btn-success" role="button" target="_blank">
+        <span class="oi oi-spreadsheet" title="spreadsheet" aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div class="col text-right">
+      <button id="sheet-put" type="button" class="btn btn-sm btn-success" title="Sync current day">
+        Sync Day
+        <span class="oi oi-cloud-upload" title="cloud-upload" aria-hidden="true"></span>
+      </button>
+
+      <button id="sheet-put-bump" type="button" class="btn btn-sm btn-success" title="Sync & increment day">
+        Sync
+        <span class="oi oi-plus" title="plus" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+
+</div><!-- .container -->
 </body>
 </html>
